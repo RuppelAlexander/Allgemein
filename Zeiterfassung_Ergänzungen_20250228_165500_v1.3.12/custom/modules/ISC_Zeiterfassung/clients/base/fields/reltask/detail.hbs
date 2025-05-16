@@ -1,0 +1,55 @@
+{{!--
+/**
+ * ------------------------------------------------------------------------------
+ * © ISC it & software consultants GmbH  (All rights reserved.)
+ * DO NOT MODIFY THIS FILE !
+ * ------------------------------------------------------------------------------
+ * Author        : DontG
+ * Create Date   : 17.11.2022
+ * Change Date   : 17.11.2022
+ * Main Program  : isc_ZE_task_rel
+ * Description   : ISC Zeiterfassung Aufgangeben Relation Button
+ * ------------------------------------------------------------------------------
+ * Change Log    :
+ * Date        Name    Description
+ * ----------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------
+ */
+ --}}
+<span  class="fieldset actions list btn-group">
+{{#if value}}
+    <a href="javascript:void(0);"
+       class="btn"
+       rel="tooltip"
+       data-placement="bottom"
+       data-action="openlink"
+       title="{{value}}"
+       name="TaskSel-openlink"
+       role="button" tabindex="{{tabIndex}}">
+        <i class="fa fa-tasks"></i>
+    </a>
+    <a href="javascript:void(0);"
+       class="btn"
+       rel="tooltip"
+       data-placement="bottom"
+       data-action="taskpreview"
+       title="{{value}}"
+       name="TaskSel-preview"
+       role="button" tabindex="{{tabIndex}}">
+        <i class="fa fa-eye"></i>
+    </a>
+{{else}}
+    <!--
+    <a href="javascript:void(0);"
+       class="btn"
+       rel="tooltip"
+       data-placement="bottom"
+       data-action="taskswitchedit"
+       title="{{str 'LBL_IS_EMPTY'}}"
+       name="tasksel_switchedit"
+       role="button" tabindex="{{tabIndex}}">
+        <i class="fa fa-minus"></i>
+    </a>
+    -->
+{{/if}}
+</span>
