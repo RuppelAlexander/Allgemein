@@ -5,7 +5,7 @@
  * Author        : RK
  * Create Date   : 03.12.2018
  * Change Date   : 08.02.2019
- * Main Program  : Zeiterfassung_Ergänzungen
+ * Main Program  : Extension
  * Description   : Contains the logic of the create button, adds model to the
  *                 collection instead of saving the bean.
  * ----------------------------------------------------------------------------
@@ -47,7 +47,8 @@
         this._super("initialize", [options]);
         app.controller.context.on('isc:setEditable', this.insertNewEditableRow, this);
         app.controller.context.on('isc:editClicked', this.doubleClickEdit, this);
-        //ISC GmbH, AR, 2025-02-28: Register a collection event listener for changes
+       
+        // ISC GmbH, AR, 2025-02-28: Register a collection event listener for changes
         this.listenTo(this.collection, 'change:projecttask_isc_zeiterfassung_1_name', this.handleTaskChange);
     },
 
@@ -67,14 +68,15 @@
         }
         // Get the current description from the model
         let currentDescription = model.get('description') || '';
-
+        
         // Update the description based on the new task value
-        if (newTaskValue) {
+               if (newTaskValue) {
             this.updateDescription(model, newTaskValue, currentDescription);
-        } else {
+               } else {
             this.updateDescription(model, '', currentDescription);
         }
     },
+
 
     /**
      * ISC GmbH, AR, 2025-02-28: Updates the description field.
@@ -84,47 +86,33 @@
      * @param {string} taskName - The name of the selected project task.
      * @param {string} currentDescription - The current description.
      */
-    updateDescription: function(model, taskName, currentDescription) {
-        // Create the expected prefix based on the task name
-        let expectedPrefix = taskName ? "'[" + taskName + "]': " : '';
-        // Handle case when no task is selected
+
+    updateDescription: function (model, taskName, currentDescription) {
+        let expectedPrefix = taskName ? "'[" + taskName + "]':\n " : '';
+
+        const prefixRE = /^('?\[[^\]]+\]'?:\s*\n?\s*)+/;
+
+        // Task entfernt → Präfix(e) löschen
         if (!taskName) {
-
-            setTimeout(function() {
-                let updatedDescription = model.get('description') || '';
-                let match = updatedDescription.match(/^'?\[[^\]]+\]'?:\s*/);
-
-                if (match) {
-                    // If description is just the prefix, clear it; otherwise, remove the prefix
-                    if (updatedDescription.trim() === match[0].trim()) {
-                        model.set('description', '', { source: 'handleTaskChange' });
-                    } else {
-                        let cleanedDescription = updatedDescription.substring(match[0].length);
-
-                        model.set('description', cleanedDescription, { source: 'handleTaskChange' });
-                    }
-                } else {
-
-                }
-            }, 100); // 100ms
+            setTimeout(function () {
+                let cleaned = (model.get('description') || '').replace(prefixRE, '');
+                model.set('description', cleaned, {source: 'handleTaskChange'});
+            }, 100);
             return;
         }
-        // If description is empty, set it to the expected prefix
-        if (currentDescription.trim() === "") {
-            model.set('description', expectedPrefix, { source: 'handleTaskChange' });
-            return;
-        }
-        // If description already has a prefix, replace it; otherwise, prepend the new prefix
-        if (/^'?\[[^\]]+\]'?:\s*!/.test(currentDescription)) {
-            let newDescription = currentDescription.replace(/^'?\[[^\]]+\]'?:\s*/, expectedPrefix);
-            if (newDescription !== currentDescription) {
-                model.set('description', newDescription, { source: 'handleTaskChange' });
-            }
-        } else {
-            let newDescription = expectedPrefix + currentDescription;
-            model.set('description', newDescription, { source: 'handleTaskChange' });
+
+        // Neues Präfix einfügen, alte entfernen
+        let body = currentDescription.replace(prefixRE, '');
+        let newDescription = expectedPrefix + body;
+
+        if (model.get('description') !== newDescription) {
+            model.set('description', newDescription, {source: 'handleTaskChange'});
         }
     },
+
+
+
+
 
 
     /**

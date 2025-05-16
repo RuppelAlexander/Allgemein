@@ -1,0 +1,19 @@
+# Ignoriere typische temporäre Dateien
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# Windows-spezifisch
+ehthumbs.db
+desktop.ini
+
+# NodeJS/PHP/SugarCRM (optional je nach Projekt)
+node_modules/
+vendor/
+.cache/
+# Eigene Skripte und Verknüpfungen (NICHT ins Repo!)
+push.sh
+clear.sh
+*.lnk
