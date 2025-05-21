@@ -1,0 +1,6 @@
+services:
+    permissions:
+        container_name: ${BASE_NAME}-permissions
+        image: sugarcrmdevelopers/sugardockerized:permissions-latest
+        volumes:
+            - ../../data/app:/var/www/html

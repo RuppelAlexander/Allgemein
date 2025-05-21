@@ -1,0 +1,9 @@
+name: ${STACK_NAME}
+include:
+    - ../suitecrm/suitecrm.yml
+    - ./mysql8.yml
+    - ../sugartools/mailhog.yml
+    - ../sugartools/phpmyadmin.yml
+networks:
+    default:
+        name: ${BASE_NAME}_Net

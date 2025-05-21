@@ -1,0 +1,9 @@
+data
+backups
+.DS_Store
+.idea
+stacks/sugar/.env
+stacks/sugar/sugar.yml
+Packete/
+Pakete
+dbdump

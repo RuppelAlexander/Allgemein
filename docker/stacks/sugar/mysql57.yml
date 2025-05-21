@@ -1,0 +1,15 @@
+services:
+    mysql:
+        container_name: ${BASE_NAME}-mysql
+        image: esimonetti/sugardockerized:mysql5.7-1.06
+#        ports:
+#            - "3306:3306"
+        volumes:
+            - type: bind
+              source: ../../data/mysql/57
+              target: /var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=sugar
+            - MYSQL_PASSWORD=sugar
+            - MYSQL_DATABASE=sugar
