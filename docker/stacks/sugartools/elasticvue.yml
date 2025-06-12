@@ -1,8 +1,0 @@
-services:
-    elasticvue:
-        image: cars10/elasticvue
-        container_name:  ${BASE_NAME}-elasticvue
-        volumes:
-            - ../../data/elasticvue/default_clusters.json:/usr/share/nginx/html/api/default_clusters.json
-        ports:
-            - ${ELVU_PORT}:8080
