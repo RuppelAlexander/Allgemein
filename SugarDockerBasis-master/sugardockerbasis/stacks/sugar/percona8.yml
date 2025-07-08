@@ -1,0 +1,17 @@
+services:
+
+    mysql:
+        container_name: ${BASE_NAME}-mysql
+        build:
+          context: ../../images/percona/8036
+        image: percona/percona-server:ISC
+#        ports:
+#            - ${MYSQL_PORT}:9200
+        volumes:
+            - type: bind
+              source: ../../data/percona/8036
+              target: /var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=sugar
+            - MYSQL_PASSWORD=sugar

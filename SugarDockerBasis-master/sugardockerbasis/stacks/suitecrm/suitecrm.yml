@@ -1,0 +1,36 @@
+services:
+  suitecrm:
+    container_name: ${BASE_NAME}-web1
+    build:
+      context: ../../images/suitecrm
+    image: suitecrm:latest
+    volumes:
+      #SuiteCRM Application Folder
+      - type: bind
+        source: ../../data/suitecrm/app
+        target: /var/www/html
+      #PHP config
+      - ../../images/suitecrm/config/php/php.ini:/etc/php/8.2/apache2/php.ini
+      #APACHE config
+      - ../../images/suitecrm/config/apache/apache2.conf:/etc/apache2/apache2.conf
+      - ../../images/suitecrm/config/apache/sites.conf:/etc/apache2/sites-enabled/sites.conf
+      - ../../images/suitecrm/config/apache/apache-selfsigned.crt:/etc/ssl/certs/apache-selfsigned.crt
+      - ../../images/suitecrm/config/apache/apache-selfsigned.key:/etc/ssl/private/apache-selfsigned.key
+      #APACHE Log Folder
+      - type: bind
+        source: ../../data/suitecrm/logs/apache
+        target: /var/log/apache2/
+      #PHP Log Folder
+      - type: bind
+        source: ../../data/suitecrm/logs/php
+        target: /var/log/php/
+    environment:
+      - DATABASE_URL = mysql://suitecrm:suitecrm@mysql:3306/suitecrm
+    ports:
+      - ${SUGAR_PORT}:80
+      - "8081:443"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    links:
+      - mysql

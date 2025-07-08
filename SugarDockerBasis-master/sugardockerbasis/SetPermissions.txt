@@ -1,0 +1,5 @@
+sudo chown -R mysql:mysql ./data/mysql/8032
+sudo chown -R mysql:mysql ./data/mysql/57
+sudo chown -R mysql:mysql ./data/percona/8036
+sudo chown root:root ./images/mysql/8032/config/mysql/docker.cnf
+sudo chown -R root:root ./images/phpmyadmin/themes/boodark

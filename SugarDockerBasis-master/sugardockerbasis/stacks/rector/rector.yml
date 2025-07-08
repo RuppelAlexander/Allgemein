@@ -1,0 +1,15 @@
+services:
+    rector:
+        container_name: "rector"
+        image: nasqueron/php-cli
+        volumes:
+            - ../../data/rector:/opt/app/rector
+            - ../../data/app/sugar:/opt/app/sugar:ro
+        command: >      
+            bash -c "cd /opt/app/rector
+            && chmod -R 777  RectorToolkit
+            && chmod +x  startcheck.sh
+            && ls -lah
+            && ./startcheck.sh"
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t

@@ -1,0 +1,16 @@
+name: ${STACK_NAME}
+include:
+    - ./php844.yml
+    - ./mysql8.yml
+    - ./elasticsearch8171.yml
+    - ../sugartools/permissions.yml
+    - ../sugartools/mailhog.yml
+#    - ../sugartools/elasticvue.yml
+    - ../sugartools/phpmyadmin.yml
+volumes:
+    sugar-elastic-data:
+        name: ${STACK_NAME}-${BASE_NAME}-el_data
+        driver: local
+networks:
+    default:
+        name: ${BASE_NAME}_Net

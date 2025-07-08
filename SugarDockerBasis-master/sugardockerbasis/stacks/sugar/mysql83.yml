@@ -1,0 +1,19 @@
+services:
+    mysql:
+        container_name: ${BASE_NAME}-mysql
+        image: sugarcrmdevelopers/sugardockerized:mysql8.3.0-latest
+#        ports:
+#            - ${MYSQL_PORT}:9200
+        volumes:
+            - type: bind
+              source: ../../data/mysql/830
+              target: /var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=sugar
+            - MYSQL_PASSWORD=sugar
+            - MYSQL_DATABASE=sugar
+        healthcheck:
+            test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost', '--user=root', '--password=root']
+            interval: 20s
+            timeout: 10s
