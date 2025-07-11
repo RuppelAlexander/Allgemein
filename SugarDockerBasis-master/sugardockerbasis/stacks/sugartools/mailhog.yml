@@ -1,6 +1,0 @@
-services:
-    mailhog:
-        container_name:  ${BASE_NAME}-mailhog
-        image: mailhog/mailhog
-        ports:
-            - ${MAILHOG_PORT}:8025
