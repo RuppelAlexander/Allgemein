@@ -1,0 +1,7 @@
+{
+    "require": {
+        "phpseclib/phpseclib": "^3.0",
+        "sugarcrm/rest-php-client": "^1.4",
+        "monolog/monolog": "^2.9"
+    }
+}
