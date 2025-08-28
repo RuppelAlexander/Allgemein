@@ -1,0 +1,54 @@
+{{!--
+/**
+ * ----------------------------------------------------------------------------
+ * © ISC it & software consultants GmbH  (All rights reserved.)
+ * DO NOT MODIFY THIS FILE !
+ * ----------------------------------------------------------------------------
+ * Author        : RuppelA                 
+ * Create Date   : 11.07.2025  
+ * Change Date   : 11.07.2025
+ * Main Program  : ISC_DeepL_Translator
+ * Description   : isc_deepl.hbs
+ * ----------------------------------------------------------------------------
+ * Change Log    :
+ * Date        Name    Description
+ * ----------------------------------------------------------------------------
+ * ----------------------------------------------------------------------------
+ */
+--}}
+
+<!--custom/modules/Administration/clients/base/views/isc_deepl/isc_deepl.hbs-->
+
+<!-- Wrapper sorgt für vertikale und horizontale Zentrierung -->
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-height: 80vh; margin-top: 60px;">
+
+    <h3 style="margin-bottom: 36px;">{{str "LBL_ISC_DEEPL_TITLE"}}</h3>
+
+    <div class="form-group" style="width: 100%; max-width: 460px; text-align: left;">
+        <label for="iscKey" style="display:block; font-size: 15px; margin-bottom: 8px;">{{str "LBL_ISC_DEEPL_KEY"}}</label>
+        <input
+                id="iscKey"
+                type="text"
+                name="iscKey"
+                class="form-control input-lg"
+                value="{{model.key}}"
+                maxlength="64"
+                style="width: 100%; font-size: 15px; letter-spacing: 0.8px;"
+        >
+    </div>
+
+    <div style="margin-top: 28px; text-align: center;">
+        <button class="btn btn-primary isc-save" style="margin-right: 8px;">
+            {{str "LBL_SAVE_BUTTON_LABEL"}}
+        </button>
+        <button class="btn btn-link isc-close">
+            {{str "LBL_CANCEL_BUTTON_LABEL"}}
+        </button>
+        <button class="btn btn-secondary isc-test">
+            {{str "LBL_ISC_DEEPL_TEST"}}
+        </button>
+    </div>
+
+</div>
+
+
